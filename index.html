@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operaciones entre Conjuntos</title>
+
+    <style>
+        body, html{
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body{
+ background: linear-gradient(318deg, #ff0062, #ffff00, #00ff00, #00ffff, #0000ff);
+background-size: 1000% 1000%;
+ 
+-webkit-animation: Coolgradient 41s linear infinite;
+-moz-animation: Coolgradient 41s linear infinite;
+-o-animation: Coolgradient 41s linear infinite;
+animation: Coolgradient 41s linear infinite;
+}
+
+@-webkit-keyframes Coolgradient {
+    0%{background-position:5% 0%}
+    50%{background-position:96% 100%}
+    100%{background-position:5% 0%}
+}
+@-moz-keyframes Coolgradient {
+    0%{background-position:5% 0%}
+    50%{background-position:96% 100%}
+    100%{background-position:5% 0%}
+}
+@-o-keyframes Coolgradient {
+    0%{background-position:5% 0%}
+    50%{background-position:96% 100%}
+    100%{background-position:5% 0%}
+}
+@keyframes Coolgradient {
+    0%{background-position:5% 0%}
+    50%{background-position:96% 100%}
+    100%{background-position:5% 0%}
+}
+
+input {
+      font-family: Verdana,sans-serif;
+      font-size: 20px;
+      height: 35px;
+      width: 55%;
+      margin: 5px;
+      background-color: white;
+      border-radius: 5px;
+    }
+
+    button{
+      border-radius: 5px;
+      font-family: Verdana,sans-serif;
+      font-size: 20px;
+      height: 45px;
+      width: 17%;
+      margin: 5px;
+      background-color: white;
+    }
+
+    p{
+      font-size: 21px;
+    }
+
+    label{
+      font-size: 20px;
+    }
+
+    </style>
+</head>
+
+
+<body>
+
+    <h2>Operaciones entre Conjuntos</h2>
+
+    <label for="conjuntoA">Conjunto A:</label>
+    <input type="text" id="conjuntoA" placeholder="Ingrese elementos separados por comas"><br><br>
+
+    <label for="conjuntoB">Conjunto B:</label>
+    <input type="text" id="conjuntoB" placeholder="Ingrese elementos separados por comas"><br><br>
+
+    <label for="conjuntoC">Conjunto C:</label>
+    <input type="text" id="conjuntoC" placeholder="Ingrese elementos separados por comas"><br><br>
+
+    <button onclick="realizarOperaciones()">Realizar Operaciones</button>
+
+    <h3>Resultados:</h3>
+
+    <p id="unionResultado"></p>
+    <p id="interseccionResultado"></p>
+    <p id="diferenciaResultado"></p>
+
+    <script>
+        function realizarOperaciones() {
+            const conjuntoA = new Set(document.getElementById('conjuntoA').value.split(',').map(item => item.trim()));
+            const conjuntoB = new Set(document.getElementById('conjuntoB').value.split(',').map(item => item.trim()));
+            const conjuntoC = new Set(document.getElementById('conjuntoC').value.split(',').map(item => item.trim()));
+
+            // Unión
+            const union = new Set([...conjuntoA, ...conjuntoB, ...conjuntoC]);
+            document.getElementById('unionResultado').textContent = `Unión: {${Array.from(union).join(', ')}}`;
+
+            // Intersección
+            const interseccion = new Set([...conjuntoA].filter(x => conjuntoB.has(x) && conjuntoC.has(x)));
+            document.getElementById('interseccionResultado').textContent = `Intersección: {${Array.from(interseccion).join(', ')}}`;
+
+            // Diferencia
+            const diferencia = new Set([...conjuntoA].filter(x => !conjuntoB.has(x) && !conjuntoC.has(x)));
+            document.getElementById('diferenciaResultado').textContent = `Diferencia: {${Array.from(diferencia).join(', ')}}`;
+        }
+    </script>
+
+</body>
+</html>
